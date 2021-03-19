@@ -1,0 +1,12 @@
+0 clasic mode - 1s 
+1 Battle mode - 2s
+2 battle mode - 1s 1 AI
+
+\\ game sounds 
+\\ logo 
+\\ buttons
+// score 
+
+** main screen
+** game screen
+
