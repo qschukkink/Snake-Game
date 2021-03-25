@@ -24,17 +24,18 @@ namespace BattleSnakes
         {
             InitializeComponent();
             // krijg de hoogte van het speel veld
-            Player_H = PlayArea.ClientSize.Height;
+           int Player_H = PlayArea.ClientSize.Height;
+           int Player_W = PlayArea.ClientSize.Width;
             // maak de start posities aan
             pos[0] = new Point(111, Player_H - snakegen.bodySise);
             pos[1] = new Point(222, Player_H - snakegen.bodySise);
-            pos[2] = new Point(333, Player_H - snakegen.bodySise);                         
+            pos[2] = new Point(Player_W / 2, Player_H - snakegen.bodySise);                         
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //start het ge selekteerde spel van het menu
-            startGame(1);
+            startGame(0);
         }
 
         private void startGame(int GameType)

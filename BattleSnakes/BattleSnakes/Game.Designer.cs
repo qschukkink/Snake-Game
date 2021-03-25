@@ -44,6 +44,7 @@ namespace BattleSnakes
             // 
             // Timer
             // 
+            this.Timer.Interval = 150;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // Game
