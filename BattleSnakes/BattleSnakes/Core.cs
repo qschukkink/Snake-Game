@@ -41,9 +41,9 @@ namespace BattleSnakes
         }
         /// <summary>
         /// verplaats de Snake kom naar de gekozen rigting
-        /// en laat de staar de kom 1 voor 1 volgen
+        /// en laat de staar de kop 1 voor 1 volgen
         /// </summary>
-        public void SnakeMove()
+        public void Move()
         {
             //beweeg de staart
             for (int i = body.Length -1; i>0;i--)
@@ -64,5 +64,21 @@ namespace BattleSnakes
 
         }
 
+    }
+    class foodgen 
+    {
+        Label food;
+        public static int foodSise = 16;
+
+        public foodgen(Point P, Control Target) 
+        {
+            food = new Label();
+            food = new Label();
+            food.BackColor = Color.Yellow;
+            food.Size = new Size(foodSise, foodSise);
+            food.Location = new Point(P.X, P.Y);
+            food.Tag = "Food";
+            Target.Controls.Add(food);
+        }
     }
 }

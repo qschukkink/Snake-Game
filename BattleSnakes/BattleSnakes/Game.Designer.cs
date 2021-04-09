@@ -37,14 +37,13 @@ namespace BattleSnakes
             // PlayArea
             // 
             this.PlayArea.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.PlayArea.Location = new System.Drawing.Point(0, 2);
+            this.PlayArea.Location = new System.Drawing.Point(0, 0);
             this.PlayArea.Name = "PlayArea";
-            this.PlayArea.Size = new System.Drawing.Size(444, 444);
+            this.PlayArea.Size = new System.Drawing.Size(441, 450);
             this.PlayArea.TabIndex = 0;
             // 
             // Timer
             // 
-            this.Timer.Interval = 150;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // Game

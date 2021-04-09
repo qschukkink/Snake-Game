@@ -12,17 +12,17 @@ namespace BattleSnakes
 {
     public partial class Game : Form
     {
+        public int GameType = 1;
         snakegen[] snake;
+        foodgen food;
 
         //set key combos
-        Keys[] WASD = new Keys[] { Keys.W, Keys.D, Keys.S, Keys.A };
+        Keys[] WASD = new Keys[] { Keys.W,       Keys.D,       Keys.S,       Keys.A };
         Keys[] NUMP = new Keys[] { Keys.NumPad8, Keys.NumPad6, Keys.NumPad2, Keys.NumPad4 };
         Point[] pos = new Point[3];
-
-        int Player_H;
         public Game()
         {
-            InitializeComponent();
+            InitializeComponent();            
             // krijg de hoogte van het speel veld
            int Player_H = PlayArea.ClientSize.Height;
            int Player_W = PlayArea.ClientSize.Width;
@@ -35,35 +35,33 @@ namespace BattleSnakes
         private void Form1_Load(object sender, EventArgs e)
         {
             //start het ge selekteerde spel van het menu
-            startGame(0);
+            startGame(GameType);
         }
 
         private void startGame(int GameType)
         {
-            // 0 = Clasic mode | 1 = Battle mode 
-
-            // kiets tussen 1 speeler of 2 speelers
+            // 0 = Clasic mode | 1 = Battle mode | 2 = Online Mode-TODO
             switch (GameType)
             {
-                default:
+                case 0:
                     snake = new snakegen[1];
                     snake[0] = new snakegen(WASD, Color.Green, pos[2], PlayArea);
-                    Timer.Start();
                     break;
                 case 1:
                     snake = new snakegen[2];
                     snake[0] = new snakegen(WASD, Color.Green, pos[0], PlayArea);
-                    snake[1] = new snakegen(NUMP, Color.BlueViolet, pos[2], PlayArea);
-                    Timer.Start();
-                    break;
+                    snake[1] = new snakegen(NUMP, Color.BlueViolet, pos[2], PlayArea);                    
+                    break;                    
             }
+            Timer.Start();
+            food = new foodgen(pos[1],PlayArea);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < snake.Length; i++)
             {
-                snake[i].SnakeMove();
+                snake[i].Move();
             }
         }
         /// <summary>
@@ -71,13 +69,20 @@ namespace BattleSnakes
         /// </summary>
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            Console.Write(e.KeyCode);
+            if (e.KeyCode == Keys.Escape) {
+                PlayArea.Controls.Clear();
+                startGame(GameType);
+            }
+            {
+
+            }
             for (int s = 0; s < snake.Length; s++)
             {
                 for (int i = 0; i < snake[s].k.Length; i++)
                 {
-                    if (snake[s].k[i] == e.KeyCode) { snake[s].dir = i; }
+                    if (snake[s].k[i] == e.KeyCode) { snake[s].dir = i;}
                 }
+                
             }
         }
     }
