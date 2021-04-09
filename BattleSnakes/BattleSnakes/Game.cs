@@ -54,7 +54,7 @@ namespace BattleSnakes
                     break;                    
             }
             Timer.Start();
-            food = new foodgen(pos[1],PlayArea);
+            food = new foodgen(PlayArea);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -65,22 +65,26 @@ namespace BattleSnakes
             }
         }
         /// <summary>
-        /// beweeg de snake door middel van de aangegeven toetsen
+        /// move the snake using the indicated keys
+        /// without being able to walk back immediately
         /// </summary>
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            // restart the game
             if (e.KeyCode == Keys.Escape) {
                 PlayArea.Controls.Clear();
                 startGame(GameType);
-            }
-            {
-
             }
             for (int s = 0; s < snake.Length; s++)
             {
                 for (int i = 0; i < snake[s].k.Length; i++)
                 {
-                    if (snake[s].k[i] == e.KeyCode) { snake[s].dir = i;}
+                    if (snake[s].k[i] == e.KeyCode) {
+                        if ((i + 2) %4 != snake[s].dir)
+                        {
+                            snake[s].dir = i;
+                        }                        
+                    }
                 }
                 
             }

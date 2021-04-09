@@ -1,6 +1,6 @@
 0 clasic mode - 1s 
 1 Battle mode - 2s
-2 battle mode - 1s 1 AI
+2 battle mode - Online via json on server
 
 \\ game sounds 
 \\ logo 
