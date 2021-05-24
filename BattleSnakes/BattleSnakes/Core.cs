@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,6 +33,7 @@ namespace BattleSnakes
         public int dir;
         public static int bodylength = 4;
         public static int bodySise = 16;
+        public int score = 0;
         /// <summary>
         /// create a snake with the given properties
         /// </summary>
@@ -62,12 +64,12 @@ namespace BattleSnakes
         /// </summary>
         public void Move()
         {
-            //beweeg de staart
+            // moves the tail
             for (int i = body.Length -1; i>0;i--)
             {
                 body[i].Location = body[i - 1].Location;
             }
-            // beweeg de kop
+            // move the head
             Point SnakeHead = body[0].Location;
             switch (dir)
             {
@@ -80,12 +82,44 @@ namespace BattleSnakes
 
 
         }
+        /// <summary>
+        /// see if the player should get a point and get longer
+        /// </summary>
+        /// <algo>
+        /// look at the location of the player and that of the food they are the same then give that player a point and add a piece to the tail
+        /// </algo>
+        /// <param name="food"></param>
+        /// <param name="Target"></param>
+        internal void checkScore(foodgen food, Control Target)
+        {            
+            if (body[0].Location == food.foodloc)
+            {
+                var foodsound = new SoundPlayer(@"Resources\food.wav");
+                foodsound.Play(); 
+                food.Move(Target);
+                score++;
+                Array.Resize(ref body, body.Length + 1);
+                body[body.Length - 1] = new Label();
+                body[body.Length - 1].BackColor = body[body.Length - 2].BackColor;
+                body[body.Length - 1].Size = new Size(bodySise, bodySise);
+                body[body.Length - 1].Location = new Point(-32,0);
+                body[body.Length - 1].Tag = body.Length - 1;
+                Target.Controls.Add(body[body.Length - 1]);
+            }
 
+        }
     }
+    /// <summary>
+    /// put a piece of food on the playing field
+    /// <algo>
+    /// generate a random number and place the food on that spot
+    /// </algo>
+    /// </summary>
     class foodgen 
     {
         Label food;
         public static int foodSise = snakegen.bodySise;
+        public Point foodloc;
         static Random Rand = new Random();
         public foodgen(Control Target) 
         {
@@ -93,17 +127,26 @@ namespace BattleSnakes
             food.BackColor = Color.Yellow;
             food.Size = new Size(foodSise, foodSise);
             food.Location = foodpos(Target);
-            food.Tag = "Food";
+            foodloc = food.Location;
+            food.Name = "Food";
             Target.Controls.Add(food);
+        }
+        public void Move(Control Target)
+        {
+            food.Location = foodpos(Target);
+            foodloc = food.Location;
+            // send pos to server 
         }
         /// <summary>
         /// create a point with a random value within the playing field
         /// </summary>
-        public Point foodpos(Control Target)
+        public static Point foodpos(Control Target)
         {
+            //125
             int Width = Target.Width;
             int Height = Target.Height;
-            Point pos = new Point(Rand.Next(0, Width - foodSise), Rand.Next(0, Height - foodSise));
+            int randpos = (16 * Rand.Next(1, 29));
+            Point pos = new Point(randpos, randpos);
             return pos;
         }
     }
