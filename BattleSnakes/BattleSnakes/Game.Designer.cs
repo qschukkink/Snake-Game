@@ -43,9 +43,14 @@ namespace BattleSnakes
             this.BTN_Multiplayer = new System.Windows.Forms.Button();
             this.BTN_Singleplayer = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.Pen_GameOver = new System.Windows.Forms.Panel();
+            this.BTN_exit = new System.Windows.Forms.Button();
+            this.BTN_menu = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.SnakeDis1.SuspendLayout();
             this.SnakeDis2.SuspendLayout();
             this.GameMenu.SuspendLayout();
+            this.Pen_GameOver.SuspendLayout();
             this.SuspendLayout();
             // 
             // PlayArea
@@ -129,7 +134,7 @@ namespace BattleSnakes
             this.GameMenu.Controls.Add(this.BTN_Multiplayer);
             this.GameMenu.Controls.Add(this.BTN_Singleplayer);
             this.GameMenu.Controls.Add(this.label3);
-            this.GameMenu.Location = new System.Drawing.Point(-1, -5);
+            this.GameMenu.Location = new System.Drawing.Point(-1, -4);
             this.GameMenu.Name = "GameMenu";
             this.GameMenu.Size = new System.Drawing.Size(718, 489);
             this.GameMenu.TabIndex = 0;
@@ -190,15 +195,69 @@ namespace BattleSnakes
             this.label3.Text = "Snake";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // Pen_GameOver
+            // 
+            this.Pen_GameOver.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Pen_GameOver.Controls.Add(this.BTN_exit);
+            this.Pen_GameOver.Controls.Add(this.BTN_menu);
+            this.Pen_GameOver.Controls.Add(this.label4);
+            this.Pen_GameOver.Location = new System.Drawing.Point(-1, -4);
+            this.Pen_GameOver.Name = "Pen_GameOver";
+            this.Pen_GameOver.Size = new System.Drawing.Size(718, 489);
+            this.Pen_GameOver.TabIndex = 3;
+            this.Pen_GameOver.Visible = false;
+            // 
+            // BTN_exit
+            // 
+            this.BTN_exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BTN_exit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BTN_exit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BTN_exit.Font = new System.Drawing.Font("Arial Rounded MT Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_exit.ForeColor = System.Drawing.Color.White;
+            this.BTN_exit.Location = new System.Drawing.Point(216, 234);
+            this.BTN_exit.Name = "BTN_exit";
+            this.BTN_exit.Size = new System.Drawing.Size(282, 54);
+            this.BTN_exit.TabIndex = 1;
+            this.BTN_exit.Text = "Exit";
+            this.BTN_exit.UseVisualStyleBackColor = false;
+            this.BTN_exit.Click += new System.EventHandler(this.BTN_exit_Click);
+            // 
+            // BTN_menu
+            // 
+            this.BTN_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BTN_menu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BTN_menu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BTN_menu.Font = new System.Drawing.Font("Arial Rounded MT Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_menu.ForeColor = System.Drawing.Color.White;
+            this.BTN_menu.Location = new System.Drawing.Point(216, 174);
+            this.BTN_menu.Name = "BTN_menu";
+            this.BTN_menu.Size = new System.Drawing.Size(282, 54);
+            this.BTN_menu.TabIndex = 1;
+            this.BTN_menu.Text = "Menu";
+            this.BTN_menu.UseVisualStyleBackColor = false;
+            this.BTN_menu.Click += new System.EventHandler(this.BTN_menu_Click);
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.Window;
+            this.label4.Location = new System.Drawing.Point(3, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(715, 148);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Game Over";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 481);
             this.Controls.Add(this.GameMenu);
+            this.Controls.Add(this.Pen_GameOver);
+            this.Controls.Add(this.PlayArea);
             this.Controls.Add(this.SnakeDis2);
             this.Controls.Add(this.SnakeDis1);
-            this.Controls.Add(this.PlayArea);
             this.KeyPreview = true;
             this.Name = "Game";
             this.Text = "Form1";
@@ -208,6 +267,7 @@ namespace BattleSnakes
             this.SnakeDis2.ResumeLayout(false);
             this.SnakeDis2.PerformLayout();
             this.GameMenu.ResumeLayout(false);
+            this.Pen_GameOver.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -215,7 +275,7 @@ namespace BattleSnakes
         #endregion
 
         private System.Windows.Forms.Panel PlayArea;
-        private System.Windows.Forms.Timer Timer;
+        public System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.GroupBox SnakeDis1;
         private System.Windows.Forms.Label SnakeScore1;
         private System.Windows.Forms.Label label1;
@@ -227,6 +287,10 @@ namespace BattleSnakes
         private System.Windows.Forms.Button BTN_Multiplayer;
         private System.Windows.Forms.Button BTN_Singleplayer;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel Pen_GameOver;
+        private System.Windows.Forms.Button BTN_exit;
+        private System.Windows.Forms.Button BTN_menu;
+        private System.Windows.Forms.Label label4;
     }
 }
 

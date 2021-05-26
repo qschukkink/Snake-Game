@@ -13,8 +13,10 @@ using System.Windows.Forms;
 namespace BattleSnakes
 {
     public partial class Game : Form
-    {        
-        public int GameType = 1;
+    {
+        private SoundPlayer Player = new SoundPlayer();
+        public static int GameType = 1;
+        public static int players;
         snakegen[] snake;
         foodgen food;
 
@@ -42,11 +44,13 @@ namespace BattleSnakes
             switch (GameType)
             {
                 case 0:
+                    players = 1;
                     snake = new snakegen[1];
                     SnakeDis1.Visible = true;
                     snake[0] = new snakegen(WASD, Color.Green, pos[2], PlayArea);
                     break;
                 case 1:
+                    players = 2;
                     snake = new snakegen[2];
                     SnakeDis1.Visible = true;
                     SnakeDis2.Visible = true;
@@ -54,6 +58,7 @@ namespace BattleSnakes
                     snake[1] = new snakegen(NUMP, Color.BlueViolet, pos[2], PlayArea);                    
                     break;
                 case 2:
+                    players = 2;
                     snake = new snakegen[2];
                     SnakeDis1.Visible = true;
                     SnakeDis2.Visible = true;
@@ -74,6 +79,7 @@ namespace BattleSnakes
                 else { SnakeScore2.Text = "" + snake[i].score; }
                 snake[i].Move();
                 snake[i].checkScore(food , PlayArea);
+                snake[i].collision(snake[i],PlayArea,Pen_GameOver);
             }
         }
         /// <summary>
@@ -124,6 +130,17 @@ namespace BattleSnakes
             GameType = 2;
             //start the selected game from the menu
             //startGame(GameType);
+        }
+
+        private void BTN_menu_Click(object sender, EventArgs e)
+        {
+            Pen_GameOver.Visible = false;
+            GameMenu.Visible = true;
+        }
+
+        private void BTN_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
