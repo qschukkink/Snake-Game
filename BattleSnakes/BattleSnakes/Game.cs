@@ -75,8 +75,8 @@ namespace BattleSnakes
         {
             for (int i = 0; i < snake.Length; i++)
             {
-                if (i == 0) { SnakeScore1.Text = "" + snake[i].score; }
-                else { SnakeScore2.Text = "" + snake[i].score; }
+                if (i == 0) { SnakeScore1.Text = "" + snake[i].score;}
+                else        { SnakeScore2.Text = "" + snake[i].score;}
                 snake[i].Move();
                 snake[i].checkScore(food , PlayArea);
                 snake[i].collision(snake[i],PlayArea,Pen_GameOver);

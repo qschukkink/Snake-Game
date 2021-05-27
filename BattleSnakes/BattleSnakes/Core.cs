@@ -29,7 +29,7 @@ namespace BattleSnakes
     class snakegen
     {
         public Keys[] k;
-        Label[] body;
+        public Label[] body;
         public int dir;
         public static int bodylength = 4;
         public static int bodySise = 16;
@@ -85,15 +85,14 @@ namespace BattleSnakes
             }
         }
         }
-
         internal void collision(snakegen Snake, Panel PlayArea, Panel Endscreen)
         {
                
-            if (body[0].Location.X == -16)             {endgame(Snake, PlayArea, Endscreen); }
-            if (body[0].Location.Y == -16)             {endgame(Snake, PlayArea, Endscreen); }
-            if (body[0].Location.X == PlayArea.Width)  {endgame(Snake, PlayArea, Endscreen); }
-            if (body[0].Location.Y == PlayArea.Height) {endgame(Snake, PlayArea, Endscreen); }
-            for (int i = 1; i < body.Length; i++){if (body[0].Location == body[i].Location) { endgame(Snake, PlayArea, Endscreen); }}
+            if (body[0].Location.X == -16)             {endgame(PlayArea, Endscreen); }
+            if (body[0].Location.Y == -16)             {endgame(PlayArea, Endscreen); }
+            if (body[0].Location.X == PlayArea.Width)  {endgame(PlayArea, Endscreen); }
+            if (body[0].Location.Y == PlayArea.Height) {endgame(PlayArea, Endscreen); }
+            for (int i = 1; i < body.Length; i++){if (body[0].Location == body[i].Location) { endgame(PlayArea, Endscreen); }}
 
         }
         /// <summary>
@@ -104,14 +103,13 @@ namespace BattleSnakes
         /// clear the Panel
         /// play the collision sound
         /// </algo>
-        internal void endgame(snakegen snake, Panel playArea, Panel Endscreen) 
+        internal void endgame(Panel playArea, Panel Endscreen) 
         {
             Game.players--;
             living = false;
             Console.WriteLine(Game.players);
             var collisionsound = new SoundPlayer(@"Resources\collision.wav");
-            collisionsound.Play();
-            if (living) collisionsound.Play();
+            if (!living) collisionsound.Play();
             for (int i = 0; i < body.Length; i++) {body[i].Location = new Point(10000 + (16*i), 10000);}
             if (Game.players == 0) {playArea.Controls.Clear();Endscreen.Visible = true;}        
         }
