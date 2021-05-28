@@ -36,6 +36,9 @@ namespace BattleSnakes
             pos[2] = new Point(Player_W / 2, Player_H - snakegen.bodySise);                         
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void startGame(int GameType)
         {
             var startsound = new SoundPlayer(@"Resources\menu.wav");
@@ -71,6 +74,9 @@ namespace BattleSnakes
             food = new foodgen(PlayArea);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void Timer_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < snake.Length; i++)
