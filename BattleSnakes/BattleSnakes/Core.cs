@@ -139,7 +139,7 @@ namespace BattleSnakes
             if (body[0].Location == food.foodloc)
             {
                 var foodsound = new SoundPlayer(@"Resources\food.wav");
-                foodsound.Play(); 
+                foodsound.Play();
                 food.Move(Target);
                 score++;
                 Array.Resize(ref body, body.Length + 1);
