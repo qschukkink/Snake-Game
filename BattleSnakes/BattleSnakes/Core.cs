@@ -39,6 +39,9 @@ namespace BattleSnakes
         /// <summary>
         /// create a snake with the given properties
         /// </summary>
+        /// <algo>
+        /// 
+        /// </algo>
         public snakegen(Keys[] K,Color C,Point P, Control Target) {
             this.k = K;
             body = new Label[bodylength];
@@ -55,14 +58,12 @@ namespace BattleSnakes
                     body[i].BackColor = C;
                 }
                 Target.Controls.Add(body[i]);
-
-
             }
-            
         }
         /// <summary>
         /// move the Snake head to the chosen direction
-        /// and move the tail to the location of the block in front of it
+        /// and move the tail to the location of the block 
+        /// in front of it
         /// </summary>
         public void Move()
         {
@@ -86,8 +87,7 @@ namespace BattleSnakes
         }
         }
         internal void collision(snakegen Snake, Panel PlayArea, Panel Endscreen)
-        {
-               
+        {       
             if (body[0].Location.X == -16)             {endgame(PlayArea, Endscreen); }
             if (body[0].Location.Y == -16)             {endgame(PlayArea, Endscreen); }
             if (body[0].Location.X == PlayArea.Width)  {endgame(PlayArea, Endscreen); }
@@ -95,7 +95,12 @@ namespace BattleSnakes
             for (int i = 1; i < body.Length; i++){if (body[0].Location == body[i].Location) { endgame(PlayArea, Endscreen); }}
 
         }
-
+        /// <summary>
+        /// see if you run into the other snake
+        /// </summary>
+        ///<algo>
+        /// walk past all parts of the snakes and see if any of them overlap
+        /// </algo>
         internal void collide(snakegen[] snake, Panel PlayArea, Panel Endscreen)
         {
             for (int S = 0; S < snake.Length; S++)
@@ -179,7 +184,6 @@ namespace BattleSnakes
         {
             food.Location = foodpos(Target);
             foodloc = food.Location;
-            // send pos to server 
         }
         /// <summary>
         /// create a point with a random value within the playing field
