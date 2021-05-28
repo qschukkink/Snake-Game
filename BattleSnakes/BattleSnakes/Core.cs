@@ -95,6 +95,18 @@ namespace BattleSnakes
             for (int i = 1; i < body.Length; i++){if (body[0].Location == body[i].Location) { endgame(PlayArea, Endscreen); }}
 
         }
+
+        internal void collide(snakegen[] snake, Panel PlayArea, Panel Endscreen)
+        {
+            for (int S = 0; S < snake.Length; S++)
+            {
+                for (int i = 0; i < snake[S].body.Length; i++)
+                {
+                    if (i > 0) if (snake[S].body[i].Bounds.IntersectsWith(body[0].Bounds)) { Game.players--; endgame(PlayArea, Endscreen);}                    
+                }
+            }
+        }
+
         /// <summary>
         /// ends the game and clears the field
         /// </summary>

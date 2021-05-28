@@ -22,7 +22,7 @@ namespace BattleSnakes
 
         //set key combos
         Keys[] WASD = new Keys[] { Keys.W,       Keys.D,       Keys.S,       Keys.A };
-        Keys[] NUMP = new Keys[] { Keys.NumPad8, Keys.NumPad6, Keys.NumPad2, Keys.NumPad4 };
+        Keys[] NUMP = new Keys[] { Keys.Up, Keys.Right, Keys.Down, Keys.Left };
         Point[] pos = new Point[3];
         public Game()
         {
@@ -47,7 +47,7 @@ namespace BattleSnakes
                     players = 1;
                     snake = new snakegen[1];
                     SnakeDis1.Visible = true;
-                    snake[0] = new snakegen(WASD, Color.Green, pos[2], PlayArea);
+                    snake[0] = new snakegen(WASD, Color.HotPink, pos[2], PlayArea);
                     break;
                 case 1:
                     players = 2;
@@ -76,10 +76,14 @@ namespace BattleSnakes
             for (int i = 0; i < snake.Length; i++)
             {
                 if (i == 0) { SnakeScore1.Text = "" + snake[i].score;}
-                else        { SnakeScore2.Text = "" + snake[i].score;}
+                else
+                {
+                SnakeScore2.Text = "" + snake[i].score;
+                snake[i].collide(snake, PlayArea, Pen_GameOver);
+                }
                 snake[i].Move();
                 snake[i].checkScore(food , PlayArea);
-                snake[i].collision(snake[i],PlayArea,Pen_GameOver);
+                snake[i].collision(snake[i],PlayArea,Pen_GameOver);                
             }
         }
         /// <summary>

@@ -258,9 +258,10 @@ namespace BattleSnakes
             this.Controls.Add(this.PlayArea);
             this.Controls.Add(this.SnakeDis2);
             this.Controls.Add(this.SnakeDis1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.Name = "Game";
-            this.Text = "Form1";
+            this.Text = "Snake";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.SnakeDis1.ResumeLayout(false);
             this.SnakeDis1.PerformLayout();
